@@ -2,6 +2,7 @@ pyproject.toml
 fivedreg/__init__.py
 fivedreg/data.py
 fivedreg/main.py
+fivedreg/model.py
 fivedreg.egg-info/PKG-INFO
 fivedreg.egg-info/SOURCES.txt
 fivedreg.egg-info/dependency_links.txt
