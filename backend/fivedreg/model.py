@@ -181,7 +181,8 @@ class FiveDRegressor:
         # Create dataset and split
         dataset = TensorDataset(X_tensor, y_tensor)
         n_total = len(dataset)
-        n_val = max(100, int(self.val_fraction * n_total))
+        n_val = int(self.val_fraction * n_total)
+        n_val = max(1, min(n_val, n_total - 1)) 
         n_train = n_total - n_val
         
         train_ds, val_ds = random_split(
@@ -388,7 +389,7 @@ class FiveDRegressor:
         Returns:
             Self for method chaining.
         """
-        state = torch.load(filepath, map_location="cpu")
+        state = torch.load(filepath, map_location="cpu", weights_only=False)
         
         self.hidden_layers = state["hidden_layers"]
         self.x_mean = state["x_mean"]

@@ -30,3 +30,6 @@ venv/
 
 *.pkl
 *.ipynb
+.cache/
+tmp/
+log/
