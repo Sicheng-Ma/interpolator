@@ -61,16 +61,21 @@ echo ""
 echo "Location: $PROJECT_ROOT/docs/build/html/index.html"
 echo ""
 
-# Try to open in browser
+# Try to open in browser (suppress errors if it fails)
+echo "Attempting to open documentation in browser..."
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    open "build/html/index.html"
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Linux
+    open "build/html/index.html" 2>/dev/null || echo "Could not auto-open browser"
+elif [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "linux" ]]; then
+    # Linux or WSL
     if command -v xdg-open &> /dev/null; then
-        xdg-open "build/html/index.html"
+        xdg-open "build/html/index.html" 2>/dev/null || echo "Could not auto-open browser"
+    elif command -v wslview &> /dev/null; then
+        # WSL-specific browser opener
+        wslview "build/html/index.html" 2>/dev/null || echo "Could not auto-open browser"
     fi
 fi
 
+echo ""
 echo "You can view the documentation by opening:"
 echo "  file://$PROJECT_ROOT/docs/build/html/index.html"
