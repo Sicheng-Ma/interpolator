@@ -10,6 +10,7 @@ A full-stack machine learning system for training and serving neural network mod
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
+- [Documentation](#documentation)
 - [Testing](#testing)
 - [Docker Deployment](#docker-deployment)
 - [Environment Variables](#environment-variables)
@@ -97,7 +98,33 @@ yarn install
 
 ## Usage
 
-### Running Locally
+### Quick Start with Launch Script
+
+The easiest way to run the application is using the provided launch script:
+
+```bash
+# Make the script executable (first time only)
+chmod +x scripts/launch.sh
+
+# Launch both backend and frontend
+./scripts/launch.sh
+
+# Or launch specific components
+./scripts/launch.sh backend   # Backend only
+./scripts/launch.sh frontend  # Frontend only
+./scripts/launch.sh docker    # Using Docker Compose
+```
+
+The script will automatically:
+- Check for required dependencies (Python, Node.js)
+- Install packages if needed
+- Check and free ports if occupied
+- Start services in the background
+- Open your browser to http://localhost:3000
+
+Press `Ctrl+C` to stop all services.
+
+### Running Locally (Manual)
 
 #### 1. Start the Backend
 
@@ -212,6 +239,39 @@ predictions = model.predict(test.X)
   "model_id": "optional-model-id"
 }
 ```
+
+## Documentation
+
+Full API documentation is available in both interactive and static formats.
+
+### Building Documentation
+
+The project uses Sphinx to generate comprehensive documentation from code docstrings.
+
+```bash
+# Build HTML documentation
+./scripts/build_docs.sh
+```
+
+This script will:
+- Install Sphinx and documentation tools (sphinx, sphinx-rtd-theme, myst-parser)
+- Mock heavy dependencies (torch, numpy, sklearn) for faster builds
+- Generate HTML documentation in `docs/build/html/`
+- Automatically open the documentation in your browser
+
+**Note**: The build process uses mock imports for heavy dependencies
+
+### Viewing Documentation
+
+After building, the documentation is available at:
+- Local: `docs/build/html/index.html`
+- Online: [ReadTheDocs](https://your-project.readthedocs.io) (if deployed)
+
+The documentation includes:
+- API reference with detailed docstrings
+- Module descriptions
+- Class and function signatures
+- Usage examples
 
 ## Testing
 

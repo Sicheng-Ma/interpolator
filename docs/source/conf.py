@@ -5,9 +5,33 @@
 
 import os
 import sys
+from unittest.mock import MagicMock
 
 # Add the backend directory to the path for autodoc
 sys.path.insert(0, os.path.abspath('../../backend'))
+
+# Mock heavy dependencies for documentation builds
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+MOCK_MODULES = [
+    'torch',
+    'torch.nn',
+    'torch.nn.functional',
+    'torch.optim',
+    'torch.utils',
+    'torch.utils.data',
+    'numpy',
+    'sklearn',
+    'sklearn.model_selection',
+    'sklearn.preprocessing',
+    'fastapi',
+    'uvicorn',
+    'pydantic',
+]
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # -- Project information -----------------------------------------------------
 project = '5D Neural Network Regressor'

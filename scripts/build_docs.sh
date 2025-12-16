@@ -25,7 +25,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_ROOT"
 
 echo ""
-echo "Step 1: Installing dependencies..."
+echo "Step 1: Installing Sphinx and documentation tools..."
 echo "----------------------------------------"
 
 # Check if pip is available
@@ -34,23 +34,14 @@ if ! command -v pip &> /dev/null; then
     exit 1
 fi
 
-# Install Sphinx and dependencies
+# Install only Sphinx and its extensions (no heavy dependencies)
 pip install sphinx sphinx-rtd-theme myst-parser --quiet
 
-echo "Dependencies installed."
+echo "Sphinx tools installed."
+echo "Note: Heavy dependencies (torch, numpy, etc.) are mocked in conf.py"
 
 echo ""
-echo "Step 2: Installing fivedreg package..."
-echo "----------------------------------------"
-
-# Install the backend package (needed for autodoc)
-cd "$PROJECT_ROOT/backend"
-pip install -e . --quiet
-
-echo "Package installed."
-
-echo ""
-echo "Step 3: Building HTML documentation..."
+echo "Step 2: Building HTML documentation..."
 echo "----------------------------------------"
 
 # Navigate to docs directory
