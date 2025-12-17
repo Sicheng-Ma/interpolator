@@ -1,5 +1,7 @@
 # 5D Neural Network Interpolator
 
+[![Documentation Status](https://readthedocs.org/projects/c1-coursework-interpolator-sicheng-ma/badge/?version=latest)](https://c1-coursework-interpolator-sicheng-ma.readthedocs.io/en/latest/?badge=latest)
+
 A full-stack machine learning system for training and serving neural network models that interpolate 5-dimensional datasets.
 
 ## Table of Contents
@@ -265,7 +267,7 @@ This script will:
 
 After building, the documentation is available at:
 - Local: `docs/build/html/index.html`
-- Online: [ReadTheDocs](https://your-project.readthedocs.io) (if deployed)
+- Online: [ReadTheDocs](https://c1-coursework-interpolator-sicheng-ma.readthedocs.io/en/latest/)
 
 The documentation includes:
 - API reference with detailed docstrings
